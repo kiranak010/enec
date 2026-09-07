@@ -1,14 +1,13 @@
 // Emirates Nuclear Energy Corporation — Prisma schema
-// The provider uses SQLite for zero-config local/production development.
-// The schema is written to be PostgreSQL-compatible: swap `provider = "sqlite"`
-// for `provider = "postgresql"` and re-run migrations to target PostgreSQL.
+// PostgreSQL provider for production deployment (Vercel Postgres / Neon / Supabase).
+// For local development, swap back to `sqlite` and point DATABASE_URL at `file:./dev.db`.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
