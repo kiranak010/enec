@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0B1D3A;
+  --color-navy-50: #E8EBF0;
+  --color-navy-100: #C5CCDB;
+  --color-navy-200: #9EABC4;
+  --color-navy-300: #7689AD;
+  --color-navy-400: #56719C;
+  --color-navy-500: #35598C;
+  --color-navy-600: #2E4F7E;
+  --color-navy-700: #25436B;
+  --color-navy-800: #1D3759;
+  --color-navy-900: #0B1D3A;
+  --color-navy-950: #060F1E;
+
+  --color-cyan: #00A3E0;
+  --color-cyan-50: #E5F7FD;
+  --color-cyan-100: #B3E9F8;
+  --color-cyan-200: #80DBF3;
+  --color-cyan-300: #4DCDEE;
+  --color-cyan-400: #1ABFE9;
+  --color-cyan-500: #00A3E0;
+  --color-cyan-600: #008ABD;
+  --color-cyan-700: #006D94;
+  --color-cyan-800: #00516B;
+  --color-cyan-900: #003443;
+
+  --color-amber: #F5A623;
+  --color-amber-50: #FEF5E7;
+  --color-amber-100: #FCE6BC;
+  --color-amber-200: #F9D08A;
+  --color-amber-300: #F7BA58;
+  --color-amber-400: #F5A623;
+  --color-amber-500: #E08E0B;
+  --color-amber-600: #B87609;
+  --color-amber-700: #905D07;
+  --color-amber-800: #684405;
+  --color-amber-900: #402B03;
+
+  --color-slate-50: #F8FAFC;
+  --color-slate-100: #F1F5F9;
+  --color-slate-200: #E2E8F0;
+  --color-slate-300: #CBD5E1;
+  --color-slate-400: #94A3B8;
+  --color-slate-500: #64748B;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1E293B;
+  --color-slate-900: #0F172A;
+  --color-slate-950: #020617;
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-display: var(--font-inter), var(--font-arabic), system-ui, -apple-system,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  --font-sans-arabic: var(--font-arabic), var(--font-inter), system-ui, -apple-system,
+    'Segoe UI', Roboto, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+html[lang='ar'] {
+  --font-sans: var(--font-sans-arabic);
+  --font-display: var(--font-sans-arabic);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    color: var(--color-slate-800);
+    background-color: #fff;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: var(--color-cyan);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 2px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-navy-900);
+  }
+}
+
+@layer components {
+  .section-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-left: 4rem;
+      padding-right: 4rem;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+
+  .container-narrow {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .gradient-navy {
+    background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-800) 50%, var(--color-navy-950) 100%);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(180deg, rgba(11,29,58,0.92) 0%, rgba(11,29,58,0.6) 60%, rgba(11,29,58,0.85) 100%);
+  }
+
+  .bg-gradient-navy-hero {
+    background: linear-gradient(180deg, rgba(6,15,30,0.85) 0%, rgba(11,29,58,0.55) 55%, rgba(6,15,30,0.9) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-cyan-400), var(--color-cyan-200));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .animate-count-up {
+    animation: countUp 0.8s ease-out forwards;
+  }
+
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.7s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-indicator {
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(8px); opacity: 0.6; }
+  }
+
+  .line-accent {
+    position: relative;
+  }
+
+  .line-accent::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 3rem;
+    height: 3px;
+    background: var(--color-cyan);
+    border-radius: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-count-up,
+  .animate-fade-in,
+  .animate-slide-up,
+  .scroll-indicator {
+    animation: none;
+  }
+  .scroll-indicator {
+    transform: none;
+    opacity: 1;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-slate-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-500);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-navy-700);
+}

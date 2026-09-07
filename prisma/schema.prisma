@@ -1,0 +1,467 @@
+// Emirates Nuclear Energy Corporation — Prisma schema
+// The provider uses SQLite for zero-config local/production development.
+// The schema is written to be PostgreSQL-compatible: swap `provider = "sqlite"`
+// for `provider = "postgresql"` and re-run migrations to target PostgreSQL.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Users, Roles, Permissions (RBAC)
+// ---------------------------------------------------------------------------
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+  HR_MANAGER
+  MEDIA_MANAGER
+  ANALYST
+  VIEWER
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  passwordHash  String
+  role          Role      @default(VIEWER)
+  isActive      Boolean   @default(true)
+  avatarUrl     String?
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  auditLogs     AuditLog[]
+  sessions      Session[]
+  authoredPages Page[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// Pages (CMS page builder)
+// ---------------------------------------------------------------------------
+
+enum PageStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+model Page {
+  id              String         @id @default(cuid())
+  title           String
+  slug            String         @unique
+  seoTitle        String?
+  seoDescription  String?
+  heroTitle       String?
+  heroSubtitle    String?
+  heroImage       String?
+  content         String?        // rich text / serialized blocks
+  status          PageStatus     @default(DRAFT)
+  publishDate     DateTime?
+  authorId        String?
+  author          User?          @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  revisions       PageRevision[]
+}
+
+model PageRevision {
+  id        String   @id @default(cuid())
+  pageId    String
+  title     String
+  content   String?
+  authorId  String?
+  createdAt DateTime @default(now())
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@index([pageId])
+}
+
+// ---------------------------------------------------------------------------
+// News
+// ---------------------------------------------------------------------------
+
+enum NewsStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+model NewsCategory {
+  id        String         @id @default(cuid())
+  name      String         @unique
+  slug      String         @unique
+  articles  NewsArticle[]
+}
+
+model NewsTag {
+  id        String             @id @default(cuid())
+  name      String             @unique
+  slug      String             @unique
+  articles  NewsTagRelation[]
+}
+
+model NewsArticle {
+  id             String        @id @default(cuid())
+  title          String
+  slug           String        @unique
+  subtitle       String?
+  excerpt        String
+  content        String        // richtext
+  heroImage      String?
+  categoryId     String
+  category       NewsCategory  @relation(fields: [categoryId], references: [id])
+  tags           NewsTagRelation[]
+  authorName     String?
+  readTimeMins   Int?
+  isFeatured     Boolean       @default(false)
+  status         NewsStatus    @default(DRAFT)
+  publishedAt    DateTime?
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  viewCount      Int           @default(0)
+  relatedNewsIds String        @default("[]")
+
+  @@index([categoryId])
+  @@index([status])
+  @@index([publishedAt])
+}
+
+model NewsTagRelation {
+  articleId String
+  tagId     String
+  article   NewsArticle @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  tag       NewsTag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([articleId, tagId])
+}
+
+// ---------------------------------------------------------------------------
+// Projects
+// ---------------------------------------------------------------------------
+
+enum ProjectStatus {
+  PLANNED
+  UNDER_DEVELOPMENT
+  CONSTRUCTION
+  OPERATIONAL
+  COMPLETED
+  DECOMMISSIONED
+}
+
+model Project {
+  id                String             @id @default(cuid())
+  name              String
+  slug              String             @unique
+  location          String
+  country           String
+  latitude          Float?
+  longitude         Float?
+  capacityMw        Float?
+  technology        String
+  status            ProjectStatus      @default(PLANNED)
+  summary           String
+  description       String
+  heroImage         String?
+  startDate         DateTime?
+  completionDate    DateTime?
+  websiteUrl        String?
+  seoTitle          String?
+  seoDescription    String?
+  published         Boolean            @default(true)
+  featured          Boolean            @default(false)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  milestones        ProjectMilestone[]
+  gallery           ProjectImage[]
+  envImpact         String?
+  economicImpact    String?
+  relatedNewsUrls   String             @default("[]")
+}
+
+model ProjectMilestone {
+  id          String   @id @default(cuid())
+  projectId   String
+  date        DateTime
+  title       String
+  description String?
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+}
+
+model ProjectImage {
+  id          String   @id @default(cuid())
+  projectId   String
+  url         String
+  caption     String?
+  alt         String?
+  sortOrder   Int      @default(0)
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+}
+
+// ---------------------------------------------------------------------------
+// Leadership
+// ---------------------------------------------------------------------------
+
+model LeadershipProfile {
+  id             String   @id @default(cuid())
+  name           String
+  slug           String   @unique
+  title          String
+  photoUrl       String?
+  biography      String
+  responsibilities String?
+  linkedinUrl    String?
+  twitterUrl     String?
+  sortOrder      Int      @default(0)
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Careers
+// ---------------------------------------------------------------------------
+
+enum JobStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+  GRADUATE
+}
+
+model Job {
+  id             String         @id @default(cuid())
+  title          String
+  slug           String         @unique
+  department     String
+  location       String
+  employmentType EmploymentType @default(FULL_TIME)
+  summary        String
+  description    String
+  requirements   String?
+  status         JobStatus      @default(DRAFT)
+  expiresAt      DateTime?
+  publishedAt    DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  viewCount      Int            @default(0)
+  applications   JobApplication[]
+}
+
+enum ApplicationStatus {
+  RECEIVED
+  SCREENING
+  INTERVIEW
+  ASSESSMENT
+  OFFER
+  HIRED
+  REJECTED
+  WITHDRAWN
+}
+
+model JobApplication {
+  id             String            @id @default(cuid())
+  jobId          String
+  job            Job               @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  applicantName  String
+  email          String
+  phone          String?
+  cvUrl          String
+  coverLetterUrl String?
+  notes          String?
+  status         ApplicationStatus @default(RECEIVED)
+  consent        Boolean           @default(false)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@index([jobId])
+  @@index([status])
+}
+
+// ---------------------------------------------------------------------------
+// Documents / Reports
+// ---------------------------------------------------------------------------
+
+enum DocumentCategory {
+  ANNUAL_REPORT
+  SUSTAINABILITY_REPORT
+  CORPORATE_PRESENTATION
+  TECHNICAL_REPORT
+  POLICY
+  PUBLICATION
+  PRESS_RELEASE
+}
+
+model Document {
+  id          String            @id @default(cuid())
+  title       String
+  slug        String            @unique
+  description String?
+  category    DocumentCategory
+  fileUrl     String
+  fileSizeKb  Int?
+  fileType    String?
+  publishedAt DateTime?
+  published   Boolean           @default(true)
+  year        Int?
+  downloadCount Int             @default(0)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([category])
+  @@index([published])
+}
+
+// ---------------------------------------------------------------------------
+// Sustainability
+// ---------------------------------------------------------------------------
+
+model SustainabilityMetric {
+  id        String   @id @default(cuid())
+  label     String
+  value     Float
+  unit      String
+  suffix    String?
+  sortOrder Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Contact
+// ---------------------------------------------------------------------------
+
+model ContactMessage {
+  id         String   @id @default(cuid())
+  department String
+  name       String
+  email      String
+  subject    String
+  message    String
+  phone      String?
+  company    String?
+  isRead     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Newsletter subscriptions
+// ---------------------------------------------------------------------------
+
+model NewsletterSubscription {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Media asset library
+// ---------------------------------------------------------------------------
+
+model MediaAsset {
+  id          String   @id @default(cuid())
+  name        String
+  url         String
+  type        String   // image | pdf | document | video
+  mimeType    String?
+  sizeKb      Int?
+  altText     String?
+  caption     String?
+  copyright   String?
+  source      String?
+  createdAt   DateTime @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Site settings / navigation / brand
+// ---------------------------------------------------------------------------
+
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  group     String   @default("general")
+  updatedAt DateTime @updatedAt
+}
+
+model NavigationItem {
+  id        String            @id @default(cuid())
+  label     String
+  href      String
+  sortOrder Int               @default(0)
+  parentId  String?
+  parent    NavigationItem?   @relation("NavTree", fields: [parentId], references: [id])
+  children  NavigationItem[]  @relation("NavTree")
+  external  Boolean           @default(false)
+  createdAt DateTime          @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Audit log
+// ---------------------------------------------------------------------------
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  actor     String?
+  action    String
+  resource  String
+  resourceId String?
+  metadata  String?  // JSON
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([resource])
+  @@index([createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// Analytics
+// ---------------------------------------------------------------------------
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  referrer  String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([path])
+  @@index([createdAt])
+}
