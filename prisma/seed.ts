@@ -20,6 +20,9 @@ async function main() {
 
   await prisma.pageView.deleteMany()
   await prisma.auditLog.deleteMany()
+  await prisma.employeeTask.deleteMany()
+  await prisma.announcement.deleteMany()
+  await prisma.employee.deleteMany()
   await prisma.session.deleteMany()
   await prisma.pageRevision.deleteMany()
   await prisma.page.deleteMany()
@@ -75,6 +78,143 @@ async function main() {
 
   console.log('  ✔️  Super Admin (Sarah Chen)')
   console.log('  ✔️  Editor (James Mitchell)')
+
+  // ---------------------------------------------------------------------------
+  // Employees (Employee Portal)
+  // ---------------------------------------------------------------------------
+  console.log('\n-- Creating employees --')
+
+  const employeeHash = await bcrypt.hash('employee123', 10)
+  const employees = [
+    {
+      name: 'Aisha Al Mansoori',
+      employeeId: 'EMP-1001',
+      email: 'aisha@enec.gov.ae',
+      department: 'Engineering',
+      role: 'SR_ENGINEER',
+      phone: '+971 50 000 1001',
+    },
+    {
+      name: 'Omar Haddad',
+      employeeId: 'EMP-1002',
+      email: 'omar@enec.gov.ae',
+      department: 'Operations',
+      role: 'OPERATIONS_TECH',
+      phone: '+971 50 000 1002',
+    },
+    {
+      name: 'Fatima Al Zaabi',
+      employeeId: 'EMP-1003',
+      email: 'fatima@enec.gov.ae',
+      department: 'Safety',
+      role: 'SAFETY_OFFICER',
+      phone: '+971 50 000 1003',
+    },
+  ]
+
+  for (const emp of employees) {
+    await prisma.employee.create({
+      data: { ...emp, passwordHash: employeeHash },
+    })
+    console.log(`  ✔️  ${emp.name} (${emp.department})`)
+  }
+
+  // ---------------------------------------------------------------------------
+  // Employee Tasks (assigned to seed employees)
+  // ---------------------------------------------------------------------------
+  console.log('\n-- Creating employee tasks --')
+
+  const aisha = await prisma.employee.findUnique({ where: { email: 'aisha@enec.gov.ae' } })
+  const omar = await prisma.employee.findUnique({ where: { email: 'omar@enec.gov.ae' } })
+  const fatima = await prisma.employee.findUnique({ where: { email: 'fatima@enec.gov.ae' } })
+
+  const tasks = [
+    {
+      employeeId: aisha?.id ?? '',
+      title: 'Review advanced reactor turbine specifications',
+      description: 'Cross-check the latest turbine hall specifications against project standards.',
+      status: 'IN_PROGRESS' as const,
+      priority: 'HIGH' as const,
+      dueDate: new Date(Date.now() + 7 * 86400000),
+    },
+    {
+      employeeId: aisha?.id ?? '',
+      title: 'Prepare monthly engineering progress report',
+      description: 'Compile progress metrics for the Meridian and Pacific projects.',
+      status: 'PENDING' as const,
+      priority: 'MEDIUM' as const,
+      dueDate: new Date(Date.now() + 3 * 86400000),
+    },
+    {
+      employeeId: omar?.id ?? '',
+      title: 'Verify reactor coolant system log data',
+      description: 'Audit the shift logs from the Eastern Seaboard station for the past week.',
+      status: 'COMPLETED' as const,
+      priority: 'URGENT' as const,
+      dueDate: new Date(Date.now() - 2 * 86400000),
+    },
+    {
+      employeeId: omar?.id ?? '',
+      title: 'Update outage planning calendar',
+      description: 'Reflect the new maintenance window announced this week.',
+      status: 'IN_PROGRESS' as const,
+      priority: 'MEDIUM' as const,
+      dueDate: new Date(Date.now() + 10 * 86400000),
+    },
+    {
+      employeeId: fatima?.id ?? '',
+      title: 'Complete safety drill documentation',
+      description: 'Finalize the records for the Q3 emergency preparedness drill.',
+      status: 'PENDING' as const,
+      priority: 'HIGH' as const,
+      dueDate: new Date(Date.now() + 5 * 86400000),
+    },
+    {
+      employeeId: fatima?.id ?? '',
+      title: 'Audit PPE inventory for construction sites',
+      description: 'Verify PPE stock levels and expiry dates across active sites.',
+      status: 'IN_PROGRESS' as const,
+      priority: 'MEDIUM' as const,
+      dueDate: new Date(Date.now() + 14 * 86400000),
+    },
+  ]
+
+  for (const task of tasks) {
+    if (!task.employeeId) continue
+    await prisma.employeeTask.create({ data: task })
+    console.log(`  ✔️  Task: ${task.title}`)
+  }
+
+  // ---------------------------------------------------------------------------
+  // Announcements
+  // ---------------------------------------------------------------------------
+  console.log('\n-- Creating announcements --')
+
+  const announcements = [
+    {
+      title: 'Company Town Hall — Thursday 3 PM',
+      body: 'Join us for a quarterly town hall with leadership. We will cover project milestones, upcoming goals and a Q&A session. Recordings will be available afterwards.',
+      audience: 'ALL',
+      pinned: true,
+    },
+    {
+      title: 'New Leave Management Workflow',
+      body: 'From next Monday, all leave requests will move through the new digital workflow. Please submit requests at least five working days in advance.',
+      audience: 'EMPLOYEE',
+      pinned: false,
+    },
+    {
+      title: 'Annual Safety Campaign Launch',
+      body: 'This quarter we are running a fleet-wide safety campaign focused on situational awareness and hazard reporting. Participate and earn recognition.',
+      audience: 'ALL',
+      pinned: false,
+    },
+  ]
+
+  for (const announcement of announcements) {
+    await prisma.announcement.create({ data: announcement })
+    console.log(`  ✔️  Announcement: ${announcement.title}`)
+  }
 
   // ---------------------------------------------------------------------------
   // Leadership Profiles
@@ -786,6 +926,7 @@ async function main() {
   // ---------------------------------------------------------------------------
   console.log('\n✅ Database seeded successfully!')
   console.log('   Users: 2')
+  console.log('   Employees: 3, Tasks: 6, Announcements: 3')
   console.log('   Leadership Profiles: 6')
   console.log('   News Categories: 6, Tags: 6, Articles: 6')
   console.log('   Projects: 6')

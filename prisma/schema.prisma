@@ -451,6 +451,69 @@ model AuditLog {
 }
 
 // ---------------------------------------------------------------------------
+// Employee Portal
+// ---------------------------------------------------------------------------
+
+model Employee {
+  id           String         @id @default(cuid())
+  name         String
+  employeeId   String         @unique
+  email        String         @unique
+  department   String
+  role         String         @default("EMPLOYEE")
+  passwordHash String
+  phone        String?
+  avatarUrl    String?
+  isActive     Boolean        @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  tasks        EmployeeTask[]
+}
+
+model EmployeeTask {
+  id          String   @id @default(cuid())
+  employeeId  String
+  title       String
+  description String?
+  status      TaskStatus @default(PENDING)
+  priority    TaskPriority @default(MEDIUM)
+  dueDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  OVERDUE
+  CANCELLED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  body      String
+  audience  String   @default("ALL") // ALL | EMPLOYEE | VENDOR
+  pinned    Boolean  @default(false)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
 // Analytics
 // ---------------------------------------------------------------------------
 

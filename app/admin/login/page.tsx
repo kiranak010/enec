@@ -8,8 +8,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-export default async function AdminLoginPage() {
+export default async function AdminLoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>
+}) {
+  const { error } = await searchParams
   const session = await verifyAdmin()
   if (session) redirect('/admin/dashboard')
-  return <LoginForm />
+  return <LoginForm error={error} />
 }

@@ -7,6 +7,7 @@ import { Check, Linkedin, Twitter, Youtube } from 'lucide-react'
 import { site } from '@/config/site'
 import { useSite } from '@/lib/i18n/provider'
 import type { TKey } from '@/lib/i18n/translations'
+import { VisitorCounter } from './visitor-counter'
 
 const navigationColumns: { titleKey: TKey; links: { labelKey: TKey; href: string }[] }[] = [
   {
@@ -213,6 +214,7 @@ export default function SiteFooter() {
               </li>
             ))}
           </ul>
+          <VisitorCounter />
         </div>
       </div>
     </footer>

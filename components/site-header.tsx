@@ -255,6 +255,13 @@ function MobileDrawer({
             >
               {t('common.admin')}
             </Link>
+            <Link
+              href="/portal"
+              onClick={onClose}
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+            >
+              Employee Portal
+            </Link>
           </div>
         </nav>
       </div>
@@ -341,9 +348,16 @@ export default function SiteHeader() {
 
             <Link
               href="/admin"
-              className="hidden rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 xl:inline-flex"
+              className="hidden rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:inline-flex"
             >
               {t('common.admin')}
+            </Link>
+
+            <Link
+              href="/portal"
+              className="hidden rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 xl:inline-flex"
+            >
+              Portal
             </Link>
 
             <button
