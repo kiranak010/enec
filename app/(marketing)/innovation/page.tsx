@@ -192,7 +192,7 @@ export default async function InnovationPage() {
                 <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-left">
                   <p className="text-cyan-400 font-bold">{s.step}</p>
                   <h3 className="mt-2 text-lg font-bold text-white">{s.title}</h3>
-                  <p className="mt-2 text-sm text-navy-100/70">{s.description}</p>
+                  <p className="mt-2 text-sm text-navy-100/90">{s.description}</p>
                 </div>
               </Reveal>
             ))}

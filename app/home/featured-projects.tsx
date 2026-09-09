@@ -42,12 +42,12 @@ const fallbackProjects: FeaturedProject[] = [
 ]
 
 const statusColors: Record<string, string> = {
-  OPERATIONAL: 'bg-emerald-500/20 text-emerald-300',
-  CONSTRUCTION: 'bg-amber-500/20 text-amber-300',
-  UNDER_DEVELOPMENT: 'bg-blue-500/20 text-blue-300',
-  PLANNED: 'bg-slate-500/20 text-slate-300',
-  COMPLETED: 'bg-cyan-500/20 text-cyan-300',
-  DECOMMISSIONED: 'bg-red-500/20 text-red-300',
+  OPERATIONAL: 'bg-emerald-100 text-emerald-700',
+  CONSTRUCTION: 'bg-amber-100 text-amber-700',
+  UNDER_DEVELOPMENT: 'bg-blue-100 text-blue-700',
+  PLANNED: 'bg-slate-100 text-slate-700',
+  COMPLETED: 'bg-cyan-100 text-cyan-700',
+  DECOMMISSIONED: 'bg-red-100 text-red-700',
 }
 
 const statusLabels: Record<string, string> = {
@@ -109,23 +109,23 @@ export async function FeaturedProjects() {
         <div className="grid gap-8 md:grid-cols-3">
           {projects.map((project, i) => (
             <Reveal key={project.slug} delay={i * 0.15}>
-              <Link
-                href={`/projects/${project.slug}`}
-                className="group block overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
-              >
-                <CardImage
-                  src={projectImage(project.slug)}
-                  alt={project.name}
-                  className="aspect-[16/10]"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div className="relative p-8">
-                  <span
-                    className={`absolute -top-3 left-5 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider shadow-sm ${statusColors[project.status] ?? 'bg-slate-500/20 text-slate-300'}`}
-                  >
-                    {statusLabels[project.status] ?? project.status}
-                  </span>
-                  <h3 className="mb-3 text-xl font-bold text-navy-900 transition-colors group-hover:text-cyan-600">
+<Link
+                  href={`/projects/${project.slug}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+                >
+                  <CardImage
+                    src={projectImage(project.slug)}
+                    alt={project.name}
+                    className="aspect-[16/10]"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="flex flex-1 flex-col p-8">
+                    <span
+                      className={`mb-4 inline-flex w-fit items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider ${statusColors[project.status] ?? 'bg-slate-100 text-slate-700'}`}
+                    >
+                      {statusLabels[project.status] ?? project.status}
+                    </span>
+                    <h3 className="mb-3 text-xl font-bold text-navy-900 transition-colors group-hover:text-cyan-600">
                     {project.name}
                   </h3>
                   <div className="mb-4 flex items-center gap-2 text-sm text-slate-500">
