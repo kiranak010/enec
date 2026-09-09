@@ -40,8 +40,8 @@ export function AboutIntro() {
               <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-500/20 via-transparent to-amber-500/20 opacity-0 blur-xl transition-opacity duration-700 group-hover:opacity-100" />
               <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-xl">
                 <Image
-                  src={images.reactors}
-                  alt="ENEC advanced reactor facility"
+                  src={images.barakahPlant}
+                  alt="Barakah nuclear power plant"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

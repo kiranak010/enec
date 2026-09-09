@@ -63,12 +63,12 @@ const statusLabels: Record<ProjectStatus, string> = {
 }
 
 const statusBadgeClasses: Record<ProjectStatus, string> = {
-  PLANNED: 'bg-slate-500/15 text-slate-200',
-  UNDER_DEVELOPMENT: 'bg-blue-500/15 text-blue-200',
-  CONSTRUCTION: 'bg-amber-500/15 text-amber-200',
-  OPERATIONAL: 'bg-emerald-500/15 text-emerald-200',
-  COMPLETED: 'bg-cyan-500/15 text-cyan-200',
-  DECOMMISSIONED: 'bg-red-500/15 text-red-200',
+  PLANNED: 'bg-slate-100 text-slate-700',
+  UNDER_DEVELOPMENT: 'bg-blue-100 text-blue-700',
+  CONSTRUCTION: 'bg-amber-100 text-amber-700',
+  OPERATIONAL: 'bg-emerald-100 text-emerald-700',
+  COMPLETED: 'bg-cyan-100 text-cyan-700',
+  DECOMMISSIONED: 'bg-red-100 text-red-700',
 }
 
 const fallbackProjects: ProjectDetail[] = [
@@ -528,12 +528,7 @@ export default async function ProjectDetailPage({
           </Link>
 
           <div className="mt-10 max-w-3xl">
-            <span
-              className={`inline-block rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider ${statusBadgeClasses[project.status]}`}
-            >
-              {statusLabels[project.status]}
-            </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               {project.name}
             </h1>
             <p className="mt-6 flex items-start gap-3 text-lg leading-relaxed text-navy-100/80">
@@ -562,6 +557,13 @@ export default async function ProjectDetailPage({
         <div className="container-narrow">
           <div className="grid gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2">
+              <div className="mb-6">
+                <span
+                  className={`inline-flex w-fit items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider ${statusBadgeClasses[project.status]}`}
+                >
+                  {statusLabels[project.status]}
+                </span>
+              </div>
               <SectionHeading title="Project Overview" />
               <Reveal className="space-y-5 text-base leading-relaxed text-slate-600">
                 {project.description.split('\n\n').map((paragraph, i) => (

@@ -6,11 +6,15 @@ export const dynamic = 'force-dynamic'
 
 const VISITOR_COOKIE = 'enec_visitor'
 
+// The public counter begins at 8,700,000 (87 lakh) and continues upward with
+// real visits recorded in the database.
+const VISITOR_BASE = 8_700_000
+
 async function getVisitorCount() {
   try {
-    return await prisma.pageView.count()
+    return VISITOR_BASE + (await prisma.pageView.count())
   } catch {
-    return 0
+    return VISITOR_BASE
   }
 }
 

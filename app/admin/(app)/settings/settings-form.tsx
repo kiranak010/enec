@@ -19,7 +19,6 @@ const LABEL_HINTS: Record<string, string> = {
   site_name: 'The site name used in the header and metadata.',
   site_tagline: 'Short brand statement shown in the header.',
   contact_email: 'Primary contact inbox for the contact page.',
-  phone: 'Public phone number.',
   headquarters: 'Street address of headquarters.',
 }
 

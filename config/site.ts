@@ -12,10 +12,6 @@ export const site = {
     investors: 'investors@enec.gov.ae',
     suppliers: 'suppliers@enec.gov.ae',
   },
-  phone: {
-    general: '+971 2 555 0100',
-    media: '+971 2 555 0101',
-  },
   headquarters: {
     name: 'Emirates Nuclear Energy Corporation — Global Headquarters',
     address: 'Abu Dhabi, United Arab Emirates',

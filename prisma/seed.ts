@@ -857,7 +857,6 @@ async function main() {
     { key: 'site_name', value: 'Emirates Nuclear Energy Corporation', group: 'general' },
     { key: 'site_tagline', value: 'Powering a Cleaner Energy Future', group: 'general' },
     { key: 'contact_email', value: 'info@enec.in', group: 'contact' },
-    { key: 'phone', value: '+971 2 555 0100', group: 'contact' },
     {
       key: 'headquarters',
       value: 'Abu Dhabi, United Arab Emirates',

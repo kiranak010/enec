@@ -38,7 +38,7 @@ export function Innovation() {
           <h2 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
             Pioneering the Future of Energy
           </h2>
-          <p className="text-lg leading-relaxed text-slate-400">
+          <p className="text-lg leading-relaxed text-slate-300">
             Our research and development programmes push the boundaries of nuclear science
             and clean energy technology.
           </p>
@@ -52,15 +52,15 @@ export function Innovation() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: 'easeOut' }}
-              className="group rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30 hover:bg-white/10"
+              className="group rounded-2xl border border-white/10 bg-white/10 p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30 hover:bg-white/15"
             >
-              <div className="mb-4 text-5xl font-bold text-cyan-500/20">
+              <div className="mb-4 text-5xl font-bold text-cyan-400/40">
                 {String(i + 1).padStart(2, '0')}
               </div>
               <h3 className="mb-4 text-xl font-bold text-white">
                 {area.title}
               </h3>
-              <p className="text-sm leading-relaxed text-slate-400">
+              <p className="text-sm leading-relaxed text-slate-200">
                 {area.description}
               </p>
             </motion.div>

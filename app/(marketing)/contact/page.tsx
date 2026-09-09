@@ -104,8 +104,7 @@ export default function ContactPage() {
                     Monday – Friday, 8:00 AM – 6:00 PM (GST)
                   </p>
                   <p className="mt-3 text-xs leading-relaxed text-navy-200/70">
-                    Emergency and media lines are available 24/7 for
-                    time-sensitive matters.
+                    For time-sensitive matters, please email media@enec.gov.ae.
                   </p>
                 </div>
               </div>
@@ -168,8 +167,7 @@ export default function ContactPage() {
                       {site.headquarters.address}
                     </p>
                     <p className="mt-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/90 shadow-sm backdrop-blur">
-                      Visitor appointments are arranged via the general contact
-                      line.
+                      Visitor appointments are arranged via info@enec.in.
                     </p>
                   </div>
                 </CardImage>

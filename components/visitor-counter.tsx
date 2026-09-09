@@ -32,7 +32,7 @@ export function VisitorCounter() {
     }
   }, [])
 
-  const formatted = count === null ? '—' : count.toLocaleString()
+  const formatted = count === null ? '—' : count.toLocaleString('en-IN')
 
   return (
     <span className="inline-flex items-center gap-1.5 text-navy-300">

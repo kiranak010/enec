@@ -215,6 +215,9 @@ export default function SiteFooter() {
           </ul>
           <VisitorCounter />
         </div>
+        <p className="mt-8 text-center text-xs text-navy-400">
+          Photography courtesy of Wikimedia Commons contributors (CC BY-SA / CC BY).
+        </p>
       </div>
     </footer>
   )
