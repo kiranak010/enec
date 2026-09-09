@@ -1,20 +1,10 @@
 import { prisma } from '@/lib/prisma'
 import PageHeader from '@/components/ui/page-header'
 import Reveal from '@/components/ui/reveal'
-import CardImage from '@/components/ui/card-image'
 import SectionHeading from '@/components/ui/section-heading'
 import Button from '@/components/ui/button'
 import { ArrowLeft, Linkedin } from 'lucide-react'
-import { images, portraits } from '@/lib/images'
-
-const portraitMap: Record<string, string> = {
-  'Dr. Eleanor Vasquez': portraits.woman1,
-  'James Chen': portraits.man1,
-  'Sarah Mitchell': portraits.woman2,
-  'Dr. Robert Okonkwo': portraits.man2,
-  'Dr. Maria Santos': portraits.woman3,
-  'David Park': portraits.man3,
-}
+import { images } from '@/lib/images'
 
 const staticLeaders = [
   {
@@ -103,13 +93,8 @@ export default async function LeadershipPage() {
           <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {leaders.map((leader, i) => (
               <Reveal key={leader.name} delay={i * 0.08}>
-                <div className="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-cyan-200">
-                <CardImage
-                  src={portraitMap[leader.name] ?? portraits.man1}
-                  alt={`Portrait of ${leader.name}`}
-                  className="mx-auto h-24 w-24 rounded-full shadow-lg"
-                />
-                <h3 className="mt-6 text-center text-xl font-bold text-navy-900">{leader.name}</h3>
+                <div className="group h-full rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-md hover:border-cyan-200">
+                <h3 className="text-center text-xl font-bold text-navy-900">{leader.name}</h3>
                 <p className="mt-1 text-center text-sm font-semibold text-cyan-500">{leader.title}</p>
                 <p className="mt-4 text-sm text-slate-600 leading-relaxed">{leader.bio}</p>
                 {leader.responsibilities && (
