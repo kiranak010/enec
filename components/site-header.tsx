@@ -249,18 +249,18 @@ function MobileDrawer({
               {t('nav.contact')}
             </Link>
             <Link
-              href="/admin"
-              onClick={onClose}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              {t('common.admin')}
-            </Link>
-            <Link
               href="/portal"
               onClick={onClose}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
-              Employee Portal
+              Employee Login
+            </Link>
+            <Link
+              href="/vendor-portal"
+              onClick={onClose}
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+            >
+              Vendor Login
             </Link>
           </div>
         </nav>
@@ -347,17 +347,17 @@ export default function SiteHeader() {
             </Link>
 
             <Link
-              href="/admin"
+              href="/portal"
               className="hidden rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:inline-flex"
             >
-              {t('common.admin')}
+              Employee Login
             </Link>
 
             <Link
-              href="/portal"
-              className="hidden rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 xl:inline-flex"
+              href="/vendor-portal"
+              className="hidden rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 lg:inline-flex"
             >
-              Portal
+              Vendor Login
             </Link>
 
             <button
