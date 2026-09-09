@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
+import { dbQuery } from '@/lib/db-retry'
 import { createSession } from '@/lib/auth/session'
 import { logAudit } from '@/lib/audit'
 
@@ -32,14 +33,16 @@ export async function login(_prevState: LoginState, formData: FormData): Promise
 
   let user
   try {
-    user = await prisma.user.findUnique({
-      where: { email: parsed.data.email },
-    })
+    user = await dbQuery(() =>
+      prisma.user.findUnique({
+        where: { email: parsed.data.email },
+      })
+    )
   } catch {
     return {
       status: 'error',
       message:
-        'Unable to connect to the database. Please check your database configuration and try again.',
+        'Unable to connect to the database. It may be waking up — please try again in a few seconds.',
     }
   }
 
@@ -54,10 +57,12 @@ export async function login(_prevState: LoginState, formData: FormData): Promise
 
   try {
     await createSession(user.id, user.role)
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { lastLoginAt: new Date() },
-    })
+    await dbQuery(() =>
+      prisma.user.update({
+        where: { id: user.id },
+        data: { lastLoginAt: new Date() },
+      })
+    )
     await logAudit({ userId: user.id, actor: user.name, action: 'LOGIN', resource: 'Session' })
   } catch {
     return {

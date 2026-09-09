@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
+import { dbQuery } from '@/lib/db-retry'
 import { createEmployeeSession } from '@/lib/auth/employee-session'
 
 const employeeLoginSchema = z.object({
@@ -34,14 +35,16 @@ export async function employeeLogin(
 
   let employee
   try {
-    employee = await prisma.employee.findUnique({
-      where: { email: parsed.data.email },
-    })
+    employee = await dbQuery(() =>
+      prisma.employee.findUnique({
+        where: { email: parsed.data.email },
+      })
+    )
   } catch {
     return {
       status: 'error',
       message:
-        'Unable to connect to the database. Please check your database configuration and try again.',
+        'Unable to connect to the database. It may be waking up — please try again in a few seconds.',
     }
   }
 
@@ -56,10 +59,12 @@ export async function employeeLogin(
 
   try {
     await createEmployeeSession(employee.id, employee.role)
-    await prisma.employee.update({
-      where: { id: employee.id },
-      data: { lastLoginAt: new Date() },
-    })
+    await dbQuery(() =>
+      prisma.employee.update({
+        where: { id: employee.id },
+        data: { lastLoginAt: new Date() },
+      })
+    )
   } catch {
     return {
       status: 'error',
