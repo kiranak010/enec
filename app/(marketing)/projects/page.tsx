@@ -43,12 +43,12 @@ const statusLabels: Record<ProjectStatus, string> = {
 }
 
 const statusBadgeClasses: Record<ProjectStatus, string> = {
-  PLANNED: 'bg-slate-500/15 text-slate-200',
-  UNDER_DEVELOPMENT: 'bg-blue-500/15 text-blue-200',
-  CONSTRUCTION: 'bg-amber-500/15 text-amber-200',
-  OPERATIONAL: 'bg-emerald-500/15 text-emerald-200',
-  COMPLETED: 'bg-cyan-500/15 text-cyan-200',
-  DECOMMISSIONED: 'bg-red-500/15 text-red-200',
+  PLANNED: 'bg-slate-100 text-slate-700',
+  UNDER_DEVELOPMENT: 'bg-blue-100 text-blue-700',
+  CONSTRUCTION: 'bg-amber-100 text-amber-700',
+  OPERATIONAL: 'bg-emerald-100 text-emerald-700',
+  COMPLETED: 'bg-cyan-100 text-cyan-700',
+  DECOMMISSIONED: 'bg-red-100 text-red-700',
 }
 
 const fallbackProjects: ProjectCardData[] = [
@@ -295,14 +295,14 @@ export default async function ProjectsPage({
                           className="aspect-[16/10]"
                           sizes="(max-width: 768px) 100vw, 33vw"
                         />
-                        <span
-                          className={`absolute left-5 top-5 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm ${statusBadgeClasses[project.status]}`}
-                        >
-                          {statusLabels[project.status]}
-                        </span>
                       </div>
 
                       <div className="flex flex-1 flex-col p-8">
+                        <span
+                          className={`mb-4 inline-flex w-fit items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider ${statusBadgeClasses[project.status]}`}
+                        >
+                          {statusLabels[project.status]}
+                        </span>
                         <h3 className="text-xl font-bold text-navy-900 transition-colors group-hover:text-cyan-600">
                           {project.name}
                         </h3>
