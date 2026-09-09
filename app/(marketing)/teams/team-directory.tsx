@@ -1,16 +1,13 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import Image from 'next/image'
 import { ChevronDown, Globe, Users } from 'lucide-react'
 import SectionHeading from '@/components/ui/section-heading'
-import { portraits } from '@/lib/images'
 import { cn } from '@/lib/utils'
 
 interface TeamMember {
   name: string
   role: string
-  portrait: string
 }
 
 interface CountryAuthority {
@@ -28,12 +25,12 @@ const authorities: CountryAuthority[] = [
     head: 'H.E. Mohamed Al Hammadi',
     title: 'Director General',
     team: [
-      { name: 'H.E. Mohamed Al Hammadi', role: 'Director General', portrait: portraits.man1 },
-      { name: 'Salem Al Kaabi', role: 'Deputy Director General', portrait: portraits.woman1 },
-      { name: 'Fatima Al Mazrouei', role: 'Head of Licensing & Assessment', portrait: portraits.woman2 },
-      { name: 'Omar Al Suwaidi', role: 'Head of Inspection & Enforcement', portrait: portraits.man2 },
-      { name: 'Khalid Al Abdulla', role: 'Senior Nuclear Safety Inspector', portrait: portraits.man3 },
-      { name: 'Aisha Al Shamsi', role: 'Nuclear Security Specialist', portrait: portraits.woman3 },
+      { name: 'H.E. Mohamed Al Hammadi', role: 'Director General' },
+      { name: 'Salem Al Kaabi', role: 'Deputy Director General' },
+      { name: 'Fatima Al Mazrouei', role: 'Head of Licensing & Assessment' },
+      { name: 'Omar Al Suwaidi', role: 'Head of Inspection & Enforcement' },
+      { name: 'Khalid Al Abdulla', role: 'Senior Nuclear Safety Inspector' },
+      { name: 'Aisha Al Shamsi', role: 'Nuclear Security Specialist' },
     ],
   },
   {
@@ -42,12 +39,12 @@ const authorities: CountryAuthority[] = [
     head: 'Christopher T. Hanson',
     title: 'Chair',
     team: [
-      { name: 'Christopher T. Hanson', role: 'Chair', portrait: portraits.man1 },
-      { name: 'Margaret Rowland', role: 'Executive Director for Operations', portrait: portraits.woman1 },
-      { name: 'Daniel Reyes', role: 'Director, Office of Nuclear Reactor Regulation', portrait: portraits.man2 },
-      { name: 'Nancy Takahashi', role: 'Director, Office of Nuclear Security', portrait: portraits.woman2 },
-      { name: 'Robert Alden', role: 'Chief, Regulatory Development', portrait: portraits.man3 },
-      { name: 'Evelyn Carter', role: 'Senior Licensing Project Manager', portrait: portraits.woman3 },
+      { name: 'Christopher T. Hanson', role: 'Chair' },
+      { name: 'Margaret Rowland', role: 'Executive Director for Operations' },
+      { name: 'Daniel Reyes', role: 'Director, Office of Nuclear Reactor Regulation' },
+      { name: 'Nancy Takahashi', role: 'Director, Office of Nuclear Security' },
+      { name: 'Robert Alden', role: 'Chief, Regulatory Development' },
+      { name: 'Evelyn Carter', role: 'Senior Licensing Project Manager' },
     ],
   },
   {
@@ -56,11 +53,11 @@ const authorities: CountryAuthority[] = [
     head: 'Mark Foy',
     title: 'Chief Executive',
     team: [
-      { name: 'Mark Foy', role: 'Chief Executive', portrait: portraits.man2 },
-      { name: 'Sarah Whitfield', role: 'Chief Nuclear Inspector', portrait: portraits.woman1 },
-      { name: 'James O’Brien', role: 'Director, Regulation', portrait: portraits.man1 },
-      { name: 'Charlotte Hughes', role: 'Head of Safety Assessment', portrait: portraits.woman2 },
-      { name: 'David Rimmer', role: 'Head of Site Licensing', portrait: portraits.man3 },
+      { name: 'Mark Foy', role: 'Chief Executive' },
+      { name: 'Sarah Whitfield', role: 'Chief Nuclear Inspector' },
+      { name: 'James O’Brien', role: 'Director, Regulation' },
+      { name: 'Charlotte Hughes', role: 'Head of Safety Assessment' },
+      { name: 'David Rimmer', role: 'Head of Site Licensing' },
     ],
   },
   {
@@ -69,11 +66,11 @@ const authorities: CountryAuthority[] = [
     head: 'Bernard Doroszczuk',
     title: 'President',
     team: [
-      { name: 'Bernard Doroszczuk', role: 'President', portrait: portraits.man1 },
-      { name: 'Marie Dupont', role: 'Commissioner for Operations', portrait: portraits.woman1 },
-      { name: 'Philippe Laurent', role: 'Director of Technical Regulation', portrait: portraits.man2 },
-      { name: 'Claire Moreau', role: 'Head of International Relations', portrait: portraits.woman2 },
-      { name: 'Antoine Roux', role: 'Senior Resident Inspector', portrait: portraits.man3 },
+      { name: 'Bernard Doroszczuk', role: 'President' },
+      { name: 'Marie Dupont', role: 'Commissioner for Operations' },
+      { name: 'Philippe Laurent', role: 'Director of Technical Regulation' },
+      { name: 'Claire Moreau', role: 'Head of International Relations' },
+      { name: 'Antoine Roux', role: 'Senior Resident Inspector' },
     ],
   },
   {
@@ -82,11 +79,11 @@ const authorities: CountryAuthority[] = [
     head: 'Rumina Velshi',
     title: 'President & CEO',
     team: [
-      { name: 'Rumina Velshi', role: 'President & CEO', portrait: portraits.woman1 },
-      { name: 'Marcus Leclair', role: 'Executive Vice-President, Operations', portrait: portraits.man1 },
-      { name: 'Sonia Delgado', role: 'Director, Regulatory Affairs', portrait: portraits.woman2 },
-      { name: 'Peter Kowalski', role: 'Director, Technical Assessment', portrait: portraits.man2 },
-      { name: 'Rachel Tremblay', role: 'Senior Licensing Officer', portrait: portraits.woman3 },
+      { name: 'Rumina Velshi', role: 'President & CEO' },
+      { name: 'Marcus Leclair', role: 'Executive Vice-President, Operations' },
+      { name: 'Sonia Delgado', role: 'Director, Regulatory Affairs' },
+      { name: 'Peter Kowalski', role: 'Director, Technical Assessment' },
+      { name: 'Rachel Tremblay', role: 'Senior Licensing Officer' },
     ],
   },
   {
@@ -95,11 +92,11 @@ const authorities: CountryAuthority[] = [
     head: 'Zhang Kejian',
     title: 'Minister',
     team: [
-      { name: 'Zhang Kejian', role: 'Minister', portrait: portraits.man1 },
-      { name: 'Li Wei', role: 'Deputy Minister, Safety Regulation', portrait: portraits.man2 },
-      { name: 'Chen Hui', role: 'Director, Reactor Safety Division', portrait: portraits.woman1 },
-      { name: 'Wang Lei', role: 'Director, Radiological Protection', portrait: portraits.man3 },
-      { name: 'Liu Fang', role: 'Senior Inspector, NPP Operations', portrait: portraits.woman2 },
+      { name: 'Zhang Kejian', role: 'Minister' },
+      { name: 'Li Wei', role: 'Deputy Minister, Safety Regulation' },
+      { name: 'Chen Hui', role: 'Director, Reactor Safety Division' },
+      { name: 'Wang Lei', role: 'Director, Radiological Protection' },
+      { name: 'Liu Fang', role: 'Senior Inspector, NPP Operations' },
     ],
   },
   {
@@ -108,11 +105,11 @@ const authorities: CountryAuthority[] = [
     head: 'Shinsuke Yamanaka',
     title: 'Chairman',
     team: [
-      { name: 'Shinsuke Yamanaka', role: 'Chairman', portrait: portraits.man1 },
-      { name: 'Keiko Tanaka', role: 'Commissioner', portrait: portraits.woman1 },
-      { name: 'Hiroshi Saito', role: 'Director, Regulatory Standards', portrait: portraits.man2 },
-      { name: 'Yuki Aoki', role: 'Head of Inspection Division', portrait: portraits.woman2 },
-      { name: 'Takeshi Mori', role: 'Senior Safety Analyst', portrait: portraits.man3 },
+      { name: 'Shinsuke Yamanaka', role: 'Chairman' },
+      { name: 'Keiko Tanaka', role: 'Commissioner' },
+      { name: 'Hiroshi Saito', role: 'Director, Regulatory Standards' },
+      { name: 'Yuki Aoki', role: 'Head of Inspection Division' },
+      { name: 'Takeshi Mori', role: 'Senior Safety Analyst' },
     ],
   },
   {
@@ -121,11 +118,11 @@ const authorities: CountryAuthority[] = [
     head: 'Lee Eun-cheol',
     title: 'Chair',
     team: [
-      { name: 'Lee Eun-cheol', role: 'Chair', portrait: portraits.man2 },
-      { name: 'Park Ji-hoon', role: 'Vice Chair', portrait: portraits.man1 },
-      { name: 'Kim Min-seo', role: 'Director, Safety Assessment', portrait: portraits.woman1 },
-      { name: 'Choi Jung-woo', role: 'Director, Inspection & Enforcement', portrait: portraits.man3 },
-      { name: 'Kang Soo-jin', role: 'Senior Nuclear Security Officer', portrait: portraits.woman2 },
+      { name: 'Lee Eun-cheol', role: 'Chair' },
+      { name: 'Park Ji-hoon', role: 'Vice Chair' },
+      { name: 'Kim Min-seo', role: 'Director, Safety Assessment' },
+      { name: 'Choi Jung-woo', role: 'Director, Inspection & Enforcement' },
+      { name: 'Kang Soo-jin', role: 'Senior Nuclear Security Officer' },
     ],
   },
   {
@@ -134,11 +131,11 @@ const authorities: CountryAuthority[] = [
     head: 'Alexander Trembitsky',
     title: 'Head',
     team: [
-      { name: 'Alexander Trembitsky', role: 'Head', portrait: portraits.man1 },
-      { name: 'Sergei Volkov', role: 'Deputy Head, Nuclear Oversight', portrait: portraits.man2 },
-      { name: 'Irina Sokolova', role: 'Director, NPP Licensing', portrait: portraits.woman1 },
-      { name: 'Dmitry Ivanov', role: 'Chief Safety Inspector', portrait: portraits.man3 },
-      { name: 'Olga Petrova', role: 'Head of International Cooperation', portrait: portraits.woman2 },
+      { name: 'Alexander Trembitsky', role: 'Head' },
+      { name: 'Sergei Volkov', role: 'Deputy Head, Nuclear Oversight' },
+      { name: 'Irina Sokolova', role: 'Director, NPP Licensing' },
+      { name: 'Dmitry Ivanov', role: 'Chief Safety Inspector' },
+      { name: 'Olga Petrova', role: 'Head of International Cooperation' },
     ],
   },
   {
@@ -147,19 +144,19 @@ const authorities: CountryAuthority[] = [
     head: 'G. Nageswara Rao',
     title: 'Chairman',
     team: [
-      { name: 'G. Nageswara Rao', role: 'Chairman', portrait: portraits.man1 },
-      { name: 'Dr. Anand Krishnan', role: 'Director, Regulatory Operations', portrait: portraits.man1 },
-      { name: 'Meera Deshpande', role: 'Director, Safety Assessment', portrait: portraits.woman1 },
-      { name: 'Rajesh Iyer', role: 'Director, Technical Compliance', portrait: portraits.man2 },
-      { name: 'Neha Sharma', role: 'Principal Appraiser, Plant Design', portrait: portraits.woman2 },
-      { name: 'Vikram Nair', role: 'Appraiser, Siting & Environment', portrait: portraits.man1 },
-      { name: 'Arjun Menon', role: 'Appraiser, Quality & Reliability', portrait: portraits.man3 },
-      { name: 'Priya Raman', role: 'Lead Test Engineer, Reactor Systems', portrait: portraits.woman1 },
-      { name: 'Sanjay Kulkarni', role: 'Test Engineer, I&C', portrait: portraits.man2 },
-      { name: 'Divya Pillai', role: 'Test Engineer, Radiation Protection', portrait: portraits.woman3 },
-      { name: 'Dr. Suresh Patil', role: 'Senior Reviewer, Operational Safety', portrait: portraits.man3 },
-      { name: 'Anita Verghese', role: 'Evaluation Officer, Emergency Preparedness', portrait: portraits.woman2 },
-      { name: 'Karthik Rao', role: 'Licensing Officer, New Builds', portrait: portraits.man1 },
+      { name: 'G. Nageswara Rao', role: 'Chairman' },
+      { name: 'Dr. Anand Krishnan', role: 'Director, Regulatory Operations' },
+      { name: 'Meera Deshpande', role: 'Director, Safety Assessment' },
+      { name: 'Rajesh Iyer', role: 'Director, Technical Compliance' },
+      { name: 'Neha Sharma', role: 'Principal Appraiser, Plant Design' },
+      { name: 'Vikram Nair', role: 'Appraiser, Siting & Environment' },
+      { name: 'Arjun Menon', role: 'Appraiser, Quality & Reliability' },
+      { name: 'Priya Raman', role: 'Lead Test Engineer, Reactor Systems' },
+      { name: 'Sanjay Kulkarni', role: 'Test Engineer, I&C' },
+      { name: 'Divya Pillai', role: 'Test Engineer, Radiation Protection' },
+      { name: 'Dr. Suresh Patil', role: 'Senior Reviewer, Operational Safety' },
+      { name: 'Anita Verghese', role: 'Evaluation Officer, Emergency Preparedness' },
+      { name: 'Karthik Rao', role: 'Licensing Officer, New Builds' },
     ],
   },
 ]
@@ -268,13 +265,15 @@ export default function TeamDirectory() {
                   key={`${selected.country}-${m.name}`}
                   className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-cyan-200 hover:bg-white"
                 >
-                  <Image
-                    src={m.portrait}
-                    alt={`Portrait of ${m.name}`}
-                    width={56}
-                    height={56}
-                    className="h-14 w-14 shrink-0 rounded-full bg-slate-200 object-cover"
-                  />
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-navy-700 text-base font-bold text-white">
+                    {m.name
+                      .split(' ')
+                      .filter(Boolean)
+                      .slice(0, 2)
+                      .map((n) => n[0])
+                      .join('')
+                      .toUpperCase()}
+                  </span>
                   <div className="min-w-0">
                     <h3 className="truncate text-sm font-bold text-navy-900">{m.name}</h3>
                     <p className="mt-0.5 text-xs font-semibold text-cyan-600">{m.role}</p>
