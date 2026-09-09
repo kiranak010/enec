@@ -1,5 +1,5 @@
 export const images = {
-  heroPlant: '/images/hero-plant.jpg',
+  heroPlant: '/images/barakah-plant.jpg',
   reactors: '/images/reactors.jpg',
   controlRoom: '/images/control-room.jpg',
   grid: '/images/grid.jpg',
@@ -16,6 +16,14 @@ export const images = {
   workshop: '/images/workshop.jpg',
   mediaBriefing: '/images/media-briefing.jpg',
   documentArchive: '/images/document-archive.jpg',
+  barakahPlant: '/images/barakah-plant.jpg',
+  barakahConstruction: '/images/barakah-construction.jpg',
+  nuclearCoolingTower: '/images/nuclear-cooling-tower.jpg',
+  nuclearCoolingTowers: '/images/nuclear-cooling-towers.jpg',
+  powerGridSunset: '/images/power-grid-sunset.jpg',
+  powerGridPylon: '/images/power-grid-pylon.jpg',
+  solarDesert: '/images/solar-desert.jpg',
+  windKansas: '/images/wind-kansas.jpg',
 } as const
 
 export const portraits = {
@@ -28,12 +36,12 @@ export const portraits = {
 } as const
 
 const projectImages: Record<string, string> = {
-  'meridian-reactor': images.reactors,
-  'pacific-clean-energy-plant': images.turbineHall,
-  'northern-energy-hub': images.wind,
-  'eastern-seaboard-station': images.grid,
-  'central-plains-reactor': images.controlRoom,
-  'southern-coastal-project': images.heroPlant,
+  'meridian-reactor': images.barakahConstruction,
+  'pacific-clean-energy-plant': images.nuclearCoolingTower,
+  'northern-energy-hub': images.nuclearCoolingTowers,
+  'eastern-seaboard-station': images.powerGridSunset,
+  'central-plains-reactor': images.windKansas,
+  'southern-coastal-project': images.powerGridPylon,
 }
 
 export function projectImage(slug: string): string {
@@ -41,12 +49,16 @@ export function projectImage(slug: string): string {
 }
 
 const newsImages: Record<string, string> = {
-  'advancing-next-generation-reactor-technology': images.reactors,
-  'global-partnership-for-clean-energy-expansion': images.earth,
+  'advancing-next-generation-reactor-technology': images.barakahConstruction,
+  'global-partnership-for-clean-energy-expansion': images.solarDesert,
   'new-safety-standards-set-industry-benchmark': images.safety,
   'investing-in-tomorrows-energy-workforce': images.team,
-  'milestone-25-gw-of-clean-energy-capacity': images.grid,
+  'milestone-25-gw-of-clean-energy-capacity': images.powerGridSunset,
   'pioneering-ai-driven-predictive-maintenance': images.controlRoom,
+  'enec-reports-record-generation-in-2025': images.nuclearCoolingTowers,
+  'smr-technology-roadmap-unveiled': images.turbineHall,
+  'nuclear-skills-academy-launched': images.workshop,
+  'advanced-fuel-more-efficient-nuclear-cycle': images.lab,
 }
 
 const newsCategories: Record<string, string> = {
