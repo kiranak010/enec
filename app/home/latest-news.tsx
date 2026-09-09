@@ -15,28 +15,28 @@ interface NewsItem {
 
 const fallbackNews: NewsItem[] = [
   {
+    title: 'ENEC Reports Record Generation in 2025',
+    slug: 'enec-reports-record-generation-in-2025',
+    excerpt:
+      'Annual clean power output from the fleet reached a new all-time high, reinforcing the role of nuclear energy in the energy transition.',
+    category: 'Corporate',
+    date: '2025-12-12',
+  },
+  {
+    title: 'SMR Technology Roadmap Unveiled',
+    slug: 'smr-technology-roadmap-unveiled',
+    excerpt:
+      'A detailed roadmap brings small modular reactor deployment closer to reality, with siting assessments underway.',
+    category: 'Nuclear Innovation',
+    date: '2025-11-30',
+  },
+  {
     title: 'Advancing Next-Generation Reactor Technology',
-    slug: 'advancing-next-gen-reactor-technology',
+    slug: 'advancing-next-generation-reactor-technology',
     excerpt:
       'Our latest breakthrough in small modular reactor design promises to revolutionise distributed clean energy generation.',
     category: 'Nuclear Innovation',
     date: '2025-11-15',
-  },
-  {
-    title: 'Global Partnership for Clean Energy Expansion',
-    slug: 'global-partnership-clean-energy',
-    excerpt:
-      'ENEC signs landmark agreement with international partners to develop new nuclear capacity across emerging markets.',
-    category: 'Corporate',
-    date: '2025-10-28',
-  },
-  {
-    title: 'New Safety Standards Set Industry Benchmark',
-    slug: 'new-safety-standards-benchmark',
-    excerpt:
-      'Our updated safety protocols exceed international regulatory requirements and establish a new gold standard for nuclear operations.',
-    category: 'Safety',
-    date: '2025-10-10',
   },
 ]
 

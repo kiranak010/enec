@@ -13,9 +13,9 @@ const navigationColumns: { titleKey: TKey; links: { labelKey: TKey; href: string
   {
     titleKey: 'nav.nuclear',
     links: [
-      { labelKey: 'nav.nuclearHow', href: '/nuclear-energy/how-it-works' },
-      { labelKey: 'nav.nuclearFleet', href: '/nuclear-energy/fleet' },
-      { labelKey: 'nav.nuclearAdvanced', href: '/nuclear-energy/advanced-reactors' },
+      { labelKey: 'nav.nuclearHow', href: '/nuclear-energy/technology' },
+      { labelKey: 'nav.nuclearFleet', href: '/projects' },
+      { labelKey: 'nav.nuclearAdvanced', href: '/innovation' },
       { labelKey: 'nav.projects', href: '/projects' },
       { labelKey: 'nav.safety', href: '/safety' },
     ],
@@ -28,6 +28,7 @@ const navigationColumns: { titleKey: TKey; links: { labelKey: TKey; href: string
       { labelKey: 'nav.sustainability', href: '/sustainability' },
       { labelKey: 'nav.innovation', href: '/innovation' },
       { labelKey: 'nav.careers', href: '/careers' },
+      { labelKey: 'nav.careersOpenings', href: '/careers/jobs' },
       { labelKey: 'nav.suppliers', href: '/suppliers' },
     ],
   },
@@ -35,9 +36,8 @@ const navigationColumns: { titleKey: TKey; links: { labelKey: TKey; href: string
     titleKey: 'footer.resources',
     links: [
       { labelKey: 'nav.news', href: '/news' },
-      { labelKey: 'nav.newsPress', href: '/news/press-releases' },
-      { labelKey: 'nav.newsMedia', href: '/news/media' },
-      { labelKey: 'nav.sustainabilityEsg', href: '/sustainability/esg' },
+      { labelKey: 'nav.sustainabilityEsg', href: '/sustainability/reports' },
+      { labelKey: 'nav.aboutHistory', href: '/about/history' },
       { labelKey: 'common.search', href: '/search' },
     ],
   },
@@ -53,10 +53,9 @@ const navigationColumns: { titleKey: TKey; links: { labelKey: TKey; href: string
 ]
 
 const legalLinks = [
-  { labelKey: 'footer.privacy', href: '/legal/privacy' },
-  { labelKey: 'footer.terms', href: '/legal/terms' },
-  { labelKey: 'footer.accessibility', href: '/legal/accessibility' },
-  { labelKey: 'footer.cookie', href: '/legal/cookies' },
+  { labelKey: 'footer.privacy', href: '/privacy' },
+  { labelKey: 'footer.terms', href: '/terms' },
+  { labelKey: 'footer.accessibility', href: '/accessibility' },
 ] satisfies { labelKey: TKey; href: string }[]
 
 const socialLinks = [

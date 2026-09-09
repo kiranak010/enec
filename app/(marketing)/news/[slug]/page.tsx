@@ -108,6 +108,58 @@ const fallbackArticles: ArticleDetail[] = [
     readTimeMins: 5,
     publishedAt: '2025-08-18T11:20:00Z',
   },
+  {
+    title: 'ENEC Reports Record Generation in 2025',
+    slug: 'enec-reports-record-generation-in-2025',
+    subtitle:
+      'Annual clean power output reached a new all-time high across the fleet.',
+    excerpt:
+      'A full year of reliable operation delivered record low-carbon generation — enough clean electricity to power millions of homes region-wide.',
+    content: `ENEC has closed out 2025 with a record year of clean power generation, delivering more low-carbon electricity than in any previous year of operations.\n\nSustained high-capacity factors, disciplined planning and investment in digital operations tools allowed the fleet to operate at peak performance throughout the year, even through the hottest summer months when demand on the grid was highest.\n\n"This is what reliability looks like when you measure it in outcomes people can feel," said our President and CEO, Daniel Whitfield. "Homes stayed powered, industry stayed running, and every megawatt-hour avoided carbon emissions that would otherwise have warmed the planet."\n\nThe record generation reinforces the strategic case for nuclear as the backbone of a clean, secure and affordable energy system — and provides a strong foundation for the planned expansion of the fleet across the coming decade.\n\nFull-year performance figures will be published in our annual report, alongside detailed safety and sustainability metrics.`,
+    categoryName: 'Corporate',
+    authorName: 'Daniel Whitfield',
+    readTimeMins: 4,
+    publishedAt: '2025-12-12T09:00:00Z',
+  },
+  {
+    title: 'SMR Technology Roadmap Unveiled',
+    slug: 'smr-technology-roadmap-unveiled',
+    subtitle:
+      'A step-by-step plan brings small modular reactor deployment closer to reality.',
+    excerpt:
+      'ENEC has released a detailed roadmap for small modular reactor deployment, including siting assessments, licensing groundwork and partnerships with reactor vendors.',
+    content: `ENEC has published a comprehensive technology roadmap for small modular reactors (SMRs), setting out the engineering, licensing and commercial steps needed to bring the first units into operation.\n\nSMRs offer factory-built, scalable nuclear capacity that complements the baseload, gigawatt-scale plants already operating. They can be deployed closer to demand centres and support emerging applications such as district heating, desalination and clean hydrogen production.\n\n"We're deliberately methodical," explains our Chief Technology Officer, Dr. Elena Voss. "The roadmap phase-gates every decision — technology selection, safety case, supply chain readiness and grid integration — so that we only move forward when the evidence supports it."\n\nSiting assessments for candidate locations are already underway, and vendor engagement is focused on designs with mature licensing histories and clear deployment paths.\n\nThe roadmap anticipates the first demonstration unit online within the next decade, with subsequent units scaling as confidence and experience build.`,
+    categoryName: 'Nuclear Innovation',
+    authorName: 'Dr. Elena Voss',
+    readTimeMins: 5,
+    publishedAt: '2025-11-30T10:00:00Z',
+  },
+  {
+    title: 'Nuclear Skills Academy Launched',
+    slug: 'nuclear-skills-academy-launched',
+    subtitle:
+      'A new academy with leading universities builds the skilled workforce of tomorrow.',
+    excerpt:
+      'ENEC and partner universities have launched a dedicated Nuclear Skills Academy offering specialised degrees, apprenticeships and continuous professional development.',
+    content: `ENEC has launched the Nuclear Skills Academy — a dedicated institution built with leading universities to secure the talent pipeline that the expanding clean-energy fleet will need.\n\nThe academy offers accredited degrees in nuclear engineering and science, technician apprenticeships in mechanical, electrical and instrument trades, and continuous professional development for mid-career professionals moving into the sector.\n\nEvery programme is co-designed with industry, which means students learn on the simulators and processes they will actually use at the plants, and every graduate leaves with a placement pathway.\n\n"The engineers who will run the fleet for the next fifty years are being trained today," said HR Director, Priya Raghavan. "The academy makes sure they are ready before the plants need them."\n\nScholarships and paid internship routes ensure the academy is accessible to talented students from every background, supporting national and regional workforce objectives.`,
+    categoryName: 'Careers',
+    authorName: 'Priya Raghavan',
+    readTimeMins: 3,
+    publishedAt: '2025-11-05T09:30:00Z',
+  },
+  {
+    title: 'Advanced Fuel: A More Efficient Nuclear Cycle',
+    slug: 'advanced-fuel-more-efficient-nuclear-cycle',
+    subtitle:
+      'New fuel technologies could extend cycle length and improve plant economics.',
+    excerpt:
+      'Pilot programmes are evaluating advanced fuel assemblies that promise longer cycles, higher burnup and reduced waste for operating reactors.',
+    content: `ENEC has begun pilot programmes to evaluate advanced nuclear fuel assemblies that could extend operating cycles, increase energy extracted per assembly and reduce the volume of used fuel.\n\nAdvanced fuel designs combine higher-density cladding materials with revised fuel geometries, allowing reactors to run longer between refuelling outages while sustaining the same safety margins.\n\n"Weather it's a cleaner energy transition or a more competitive plant, the economics all point the same direction — get more from every assembly," said Innovation Director, Dr. Yuki Tanaka.\n\nThe pilot programme uses a staged licensing approach: laboratory testing, followed by irradiation in research reactors, and finally lead test assemblies in commercial units under enhanced monitoring.\n\nIf successful, the new fuels could be a key enabler for the next generation of the fleet, lowering operating cost while further strengthening the already exceptional safety and reliability record of the plants.`,
+    categoryName: 'Innovation',
+    authorName: 'Dr. Yuki Tanaka',
+    readTimeMins: 6,
+    publishedAt: '2025-10-18T08:00:00Z',
+  },
 ]
 
 function readingTime(content: string): number {

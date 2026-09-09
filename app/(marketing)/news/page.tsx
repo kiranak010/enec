@@ -113,6 +113,54 @@ const fallbackArticles: NewsArticleData[] = [
     readTimeMins: 5,
     isFeatured: false,
   },
+  {
+    title: 'ENEC Reports Record Generation in 2025',
+    slug: 'enec-reports-record-generation-in-2025',
+    subtitle:
+      'Annual clean power output reached a new all-time high across the fleet.',
+    excerpt:
+      'A full year of reliable operation delivered record low-carbon generation — enough clean electricity to power millions of homes region-wide.',
+    categoryName: 'Corporate',
+    publishedAt: '2025-12-12T09:00:00Z',
+    readTimeMins: 4,
+    isFeatured: false,
+  },
+  {
+    title: 'SMR Technology Roadmap Unveiled',
+    slug: 'smr-technology-roadmap-unveiled',
+    subtitle:
+      'A step-by-step plan brings small modular reactor deployment closer to reality.',
+    excerpt:
+      'ENEC has released a detailed roadmap for small modular reactor deployment, including siting assessments, licensing groundwork and partnerships with reactor vendors.',
+    categoryName: 'Nuclear Innovation',
+    publishedAt: '2025-11-30T10:00:00Z',
+    readTimeMins: 5,
+    isFeatured: false,
+  },
+  {
+    title: 'Nuclear Skills Academy Launched',
+    slug: 'nuclear-skills-academy-launched',
+    subtitle:
+      'A new academy with leading universities builds the skilled workforce of tomorrow.',
+    excerpt:
+      'ENEC and partner universities have launched a dedicated Nuclear Skills Academy offering specialised degrees, apprenticeships and continuous professional development.',
+    categoryName: 'Careers',
+    publishedAt: '2025-11-05T09:30:00Z',
+    readTimeMins: 3,
+    isFeatured: false,
+  },
+  {
+    title: 'Advanced Fuel: A More Efficient Nuclear Cycle',
+    slug: 'advanced-fuel-more-efficient-nuclear-cycle',
+    subtitle:
+      'New fuel technologies could extend cycle length and improve plant economics.',
+    excerpt:
+      'Pilot programmes are evaluating advanced fuel assemblies that promise longer cycles, higher burnup and reduced waste for operating reactors.',
+    categoryName: 'Innovation',
+    publishedAt: '2025-10-18T08:00:00Z',
+    readTimeMins: 6,
+    isFeatured: false,
+  },
 ]
 
 const inputClass =

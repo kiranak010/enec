@@ -28,7 +28,7 @@ export const DEFAULT_NAV: NavItemDef[] = [
     key: 'about',
     href: '/about',
     children: [
-      { key: 'aboutStory', href: '/about/our-story' },
+      { key: 'aboutStory', href: '/about' },
       { key: 'aboutLeadership', href: '/about/leadership' },
       { key: 'aboutHistory', href: '/about/history' },
     ],
@@ -38,25 +38,18 @@ export const DEFAULT_NAV: NavItemDef[] = [
     key: 'nuclear',
     href: '/nuclear-energy',
     children: [
-      { key: 'nuclearHow', href: '/nuclear-energy/how-it-works' },
-      { key: 'nuclearFleet', href: '/nuclear-energy/fleet' },
-      { key: 'nuclearAdvanced', href: '/nuclear-energy/advanced-reactors' },
+      { key: 'nuclearHow', href: '/nuclear-energy/technology' },
+      { key: 'nuclearFleet', href: '/projects' },
+      { key: 'nuclearAdvanced', href: '/innovation' },
     ],
   },
-  {
-    key: 'projects',
-    href: '/projects',
-    children: [
-      { key: 'projectsNew', href: '/projects/new-builds' },
-      { key: 'projectsLife', href: '/projects/life-extensions' },
-    ],
-  },
+  { key: 'projects', href: '/projects' },
   {
     key: 'sustainability',
     href: '/sustainability',
     children: [
-      { key: 'sustainabilityNetZero', href: '/sustainability/net-zero' },
-      { key: 'sustainabilityEsg', href: '/sustainability/esg' },
+      { key: 'sustainabilityNetZero', href: '/sustainability/environment' },
+      { key: 'sustainabilityEsg', href: '/sustainability/reports' },
     ],
   },
   {
@@ -64,31 +57,17 @@ export const DEFAULT_NAV: NavItemDef[] = [
     href: '/innovation',
     children: [
       { key: 'innovationResearch', href: '/innovation/research' },
-      { key: 'innovationTech', href: '/innovation/technology' },
+      { key: 'innovationTech', href: '/nuclear-energy/technology' },
     ],
   },
-  {
-    key: 'safety',
-    href: '/safety',
-    children: [
-      { key: 'safetyCulture', href: '/safety/culture' },
-      { key: 'safetyPerformance', href: '/safety/performance' },
-    ],
-  },
-  {
-    key: 'news',
-    href: '/news',
-    children: [
-      { key: 'newsPress', href: '/news/press-releases' },
-      { key: 'newsMedia', href: '/news/media' },
-    ],
-  },
+  { key: 'safety', href: '/safety' },
+  { key: 'news', href: '/news' },
   {
     key: 'careers',
     href: '/careers',
     children: [
-      { key: 'careersOpenings', href: '/careers/openings' },
-      { key: 'careersCulture', href: '/careers/culture' },
+      { key: 'careersOpenings', href: '/careers/jobs' },
+      { key: 'careersCulture', href: '/careers' },
     ],
   },
   { key: 'suppliers', href: '/suppliers' },
