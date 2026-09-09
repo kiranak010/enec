@@ -66,7 +66,7 @@ const organizationJsonLd = {
     postalCode: '',
     addressCountry: 'AE',
   },
-  sameAs: [site.social.twitter, site.social.linkedin, site.social.youtube],
+  sameAs: [site.social.facebook, site.social.twitter, site.social.linkedin, site.social.youtube],
 }
 
 interface LayoutProps {

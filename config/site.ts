@@ -17,9 +17,10 @@ export const site = {
     address: 'Abu Dhabi, United Arab Emirates',
   },
   social: {
-    twitter: 'https://twitter.com/enec',
+    facebook: 'https://www.facebook.com/EmiratesNuclearEnergyCompany',
+    twitter: 'https://twitter.com/ENEC_UAE',
     linkedin: 'https://linkedin.com/company/enec',
-    youtube: 'https://youtube.com/@enec',
+    youtube: 'https://www.youtube.com/@EMIRATESNUCLEAR',
   },
   brand: {
     primaryColor: '#0B1D3A',     // deep navy

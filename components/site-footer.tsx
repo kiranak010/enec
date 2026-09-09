@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Check, Linkedin, Twitter, Youtube } from 'lucide-react'
+import { Check, Facebook, Linkedin, Twitter, Youtube } from 'lucide-react'
 import { site } from '@/config/site'
 import { useSite } from '@/lib/i18n/provider'
 import type { TKey } from '@/lib/i18n/translations'
@@ -59,6 +59,7 @@ const legalLinks = [
 ] satisfies { labelKey: TKey; href: string }[]
 
 const socialLinks = [
+  { label: 'Facebook', href: site.social.facebook, icon: Facebook },
   { label: 'Twitter', href: site.social.twitter, icon: Twitter },
   { label: 'LinkedIn', href: site.social.linkedin, icon: Linkedin },
   { label: 'YouTube', href: site.social.youtube, icon: Youtube },
