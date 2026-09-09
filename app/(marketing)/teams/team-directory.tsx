@@ -1,8 +1,8 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import Image from 'next/image'
 import { ChevronDown, Globe, Users } from 'lucide-react'
-import CardImage from '@/components/ui/card-image'
 import SectionHeading from '@/components/ui/section-heading'
 import { portraits } from '@/lib/images'
 import { cn } from '@/lib/utils'
@@ -268,7 +268,13 @@ export default function TeamDirectory() {
                   key={`${selected.country}-${m.name}`}
                   className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-cyan-200 hover:bg-white"
                 >
-                  <CardImage src={m.portrait} alt={`Portrait of ${m.name}`} className="h-14 w-14 shrink-0 rounded-full shadow" />
+                  <Image
+                    src={m.portrait}
+                    alt={`Portrait of ${m.name}`}
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 shrink-0 rounded-full bg-slate-200 object-cover"
+                  />
                   <div className="min-w-0">
                     <h3 className="truncate text-sm font-bold text-navy-900">{m.name}</h3>
                     <p className="mt-0.5 text-xs font-semibold text-cyan-600">{m.role}</p>
