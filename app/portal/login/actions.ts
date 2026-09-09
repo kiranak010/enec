@@ -32,9 +32,18 @@ export async function employeeLogin(
     }
   }
 
-  const employee = await prisma.employee.findUnique({
-    where: { email: parsed.data.email },
-  })
+  let employee
+  try {
+    employee = await prisma.employee.findUnique({
+      where: { email: parsed.data.email },
+    })
+  } catch {
+    return {
+      status: 'error',
+      message:
+        'Unable to connect to the database. Please check your database configuration and try again.',
+    }
+  }
 
   const passwordOk =
     employee && employee.isActive && (await bcrypt.compare(parsed.data.password, employee.passwordHash))
@@ -45,11 +54,18 @@ export async function employeeLogin(
     }
   }
 
-  await createEmployeeSession(employee.id, employee.role)
-  await prisma.employee.update({
-    where: { id: employee.id },
-    data: { lastLoginAt: new Date() },
-  })
+  try {
+    await createEmployeeSession(employee.id, employee.role)
+    await prisma.employee.update({
+      where: { id: employee.id },
+      data: { lastLoginAt: new Date() },
+    })
+  } catch {
+    return {
+      status: 'error',
+      message: 'Unable to start a session. Please try again.',
+    }
+  }
 
   redirect('/portal/dashboard')
 }

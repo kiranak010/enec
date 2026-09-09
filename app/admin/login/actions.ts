@@ -30,9 +30,18 @@ export async function login(_prevState: LoginState, formData: FormData): Promise
     }
   }
 
-  const user = await prisma.user.findUnique({
-    where: { email: parsed.data.email },
-  })
+  let user
+  try {
+    user = await prisma.user.findUnique({
+      where: { email: parsed.data.email },
+    })
+  } catch {
+    return {
+      status: 'error',
+      message:
+        'Unable to connect to the database. Please check your database configuration and try again.',
+    }
+  }
 
   const passwordOk =
     user && user.isActive && (await bcrypt.compare(parsed.data.password, user.passwordHash))
@@ -43,12 +52,19 @@ export async function login(_prevState: LoginState, formData: FormData): Promise
     }
   }
 
-  await createSession(user.id, user.role)
-  await prisma.user.update({
-    where: { id: user.id },
-    data: { lastLoginAt: new Date() },
-  })
-  await logAudit({ userId: user.id, actor: user.name, action: 'LOGIN', resource: 'Session' })
+  try {
+    await createSession(user.id, user.role)
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLoginAt: new Date() },
+    })
+    await logAudit({ userId: user.id, actor: user.name, action: 'LOGIN', resource: 'Session' })
+  } catch {
+    return {
+      status: 'error',
+      message: 'Unable to start a session. Please try again.',
+    }
+  }
 
   redirect('/admin/dashboard')
 }
