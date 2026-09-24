@@ -25,6 +25,7 @@ const navigationColumns: { titleKey: TKey; links: { labelKey: TKey; href: string
     links: [
       { labelKey: 'nav.about', href: '/about' },
       { labelKey: 'nav.aboutLeadership', href: '/about/leadership' },
+      { labelKey: 'nav.aboutSubsidiaries', href: '/about/subsidiaries' },
       { labelKey: 'nav.sustainability', href: '/sustainability' },
       { labelKey: 'nav.innovation', href: '/innovation' },
       { labelKey: 'nav.careers', href: '/careers' },

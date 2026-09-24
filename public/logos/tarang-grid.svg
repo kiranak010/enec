@@ -1,0 +1,12 @@
+<svg width="260" height="112" viewBox="0 0 260 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tarang" x1="0" y1="0" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1D3A"/>
+      <stop offset="1" stop-color="#00A3E0"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="20" width="72" height="72" rx="16" fill="url(#tarang)"/>
+  <text x="44" y="62" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF">TG</text>
+  <text x="96" y="56" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="700" fill="#0B1D3A">TarangGrid Transmission</text>
+  <text x="96" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="500" fill="#475569">National Transmission Network</text>
+</svg>

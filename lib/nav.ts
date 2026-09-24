@@ -30,6 +30,7 @@ export const DEFAULT_NAV: NavItemDef[] = [
     children: [
       { key: 'aboutStory', href: '/about' },
       { key: 'aboutLeadership', href: '/about/leadership' },
+      { key: 'aboutSubsidiaries', href: '/about/subsidiaries' },
       { key: 'aboutHistory', href: '/about/history' },
     ],
   },
