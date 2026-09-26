@@ -141,10 +141,10 @@ const authorities: CountryAuthority[] = [
   {
     country: 'India',
     authority: 'Atomic Energy Regulatory Board (AERB)',
-    head: 'G. Nageswara Rao',
+    head: 'R D Chavan',
     title: 'Chairman',
     team: [
-      { name: 'G. Nageswara Rao', role: 'Chairman' },
+      { name: 'R D Chavan', role: 'Chairman' },
       { name: 'Dr. Anand Krishnan', role: 'Director, Regulatory Operations' },
       { name: 'Meera Deshpande', role: 'Director, Safety Assessment' },
       { name: 'Rajesh Iyer', role: 'Director, Technical Compliance' },
